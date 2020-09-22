@@ -1,21 +1,15 @@
-import React  from 'react';
+import React from 'react';
 import './App.css';
-import {BarkContext} from './Contexts/BarkContext'
-import {Barks} from "./Components/Barks"
-import {BarkForm} from './Components/BarkForm'
+import Barks from './Components/Barks'
+import BarkForm from './Components/BarkForm'
 
-function App() {
-
-  
+const App = () => {
   return (
     <div className="App">
-      <h1>Hello World</h1>
-      <BarkContext.Provider>
-    <BarkForm></BarkForm>
-    <Barks/>
-    </BarkContext.Provider>
+      <h1>Barker Twitter For Dogs</h1>
+      <BarkForm />
+      <Barks />
     </div>
   );
 }
-
 export default App;

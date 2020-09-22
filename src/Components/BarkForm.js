@@ -1,58 +1,57 @@
-import React, {useState,useEffect} from 'react'
-const barkUrl = "https://bark-api.herokuapp.com/bark"
-export const BarkForm = () =>{
-  const [name,setName] = useState("")
-  const [content,setContent] = useState("")
+import React, { useContext, useState } from 'react'
+import { BarksContext } from '../Contexts/BarksContext'
 
-  const nameHandler = (e) =>{
-    e.preventDefault()
-    const {value} = e.target
+const postBarkUrl = "https://bark-api.herokuapp.com/bark"
+
+const BarkForm = () => {
+
+  const [barks, setBarks] = useContext(BarksContext)
+  const [name, setName] = useState("")
+  const [content, setContent] = useState("")
+
+  const nameHandler = (e) => {
+    e.preventDefault();
+    const { value } = e.target;
     setName(value)
-
   }
 
-  const contentHandler = (e) =>{
-    e.preventDefault()
-    const {value} = e.target
+  const contentHandler = (e) => {
+    e.preventDefault();
+    const { value } = e.target;
     setContent(value)
 
   }
 
 
-  const submitBark = (e) =>{
-    e.preventDefault()
-
-    const bark = {
-      "name":name.toString(),
-        "content": content.toString()
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const newBark = {
+      name,
+      content
     }
-
-
-
-    fetch(barkUrl,{
+    setBarks([...barks, newBark])
+    fetch(postBarkUrl, {
       method: "POST",
-      headers:{
+      headers: {
         "Content-Type": "application/json"
       },
-      body:JSON.stringify(bark)
-
-    
-    }).then(res=>{
-      return res.json().then(()=>{
-        console.log("Posted Bark")
-      })
-    }).catch(err=>console.log(err))
-
-
+      body: JSON.stringify(newBark)
+    })
+    setName("")
+    setContent("")
   }
 
   return (
-    <form action="POST" className="bark-form">
-      <label>Name</label>
-      <input name = "name" onChange ={nameHandler} ></input>
-      <label>Content</label>
-      <input name="content" onChange ={contentHandler}></input>
-      <button type="submit" onClick={submitBark}>Send Bark <span role="img" aria-label="1">🐶</span></button>
+    <form action="POST" onSubmit={submitHandler}>
+      <label name="name">Name</label>
+      <input type="text" value={name} onChange={nameHandler} required autoComplete="off" />
+      <label name="content">Bark</label>
+      <input type="text" value={content} onChange={contentHandler} required autoComplete="off" />
+
+      <button type="submit" name="submit-bark">Send<span aria-label="1" role="img">🐶</span></button>
+
     </form>
   )
 }
+
+export default BarkForm;

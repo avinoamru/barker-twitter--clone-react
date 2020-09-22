@@ -4,6 +4,22 @@
   box-sizing: border-box;
 }
 
+
+#submit-bark{
+  background-color: rgba(138, 208, 255, 0.685);
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  border-radius: 8%;
+  margin: 10px;
+  padding: 2px;
+  cursor: pointer;
+  font-weight: 600;
+
+}
+
+
+
 .big-content{
   font-size: 4rem;
   font-weight: 600;
