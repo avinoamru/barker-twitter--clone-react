@@ -3,3 +3,35 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+.big-content{
+  font-size: 4rem;
+  font-weight: 600;
+  width: 30rem;
+  height: 10rem;
+  
+}
+
+
+.delete{
+  color: red;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  left: 19rem;
+  top: 1rem;
+  background-color: transparent;
+}
+
+.delete:focus{
+  outline: none;
+}
+
+
+.regular-content{
+  font-size: 1em;
+  font-weight: 400;
+  width: 20rem;
+  height: 5rem;
+}
