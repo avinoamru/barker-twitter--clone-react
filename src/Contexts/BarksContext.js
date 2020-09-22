@@ -1,6 +1,8 @@
 import React, { createContext, useEffect, useState } from 'react'
 
-const getBarksUrl = "https://bark-api.herokuapp.com/"
+// const getBarksUrl = "https://bark-api.herokuapp.com/"
+const getBarksUrl = "http://localhost:9090/"
+
 const getBarks = async () => {
   const res = await fetch(getBarksUrl)
   const data = await res.json()

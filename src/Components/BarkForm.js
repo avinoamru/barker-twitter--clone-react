@@ -1,7 +1,9 @@
 import React, { useContext, useState } from 'react'
 import { BarksContext } from '../Contexts/BarksContext'
 
-const postBarkUrl = "https://bark-api.herokuapp.com/bark"
+// const postBarkUrl = "https://bark-api.herokuapp.com/bark"
+const postBarkUrl = "http://localhost:9090/bark"
+
 
 const BarkForm = () => {
 
