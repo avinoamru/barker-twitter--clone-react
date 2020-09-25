@@ -1,15 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
 
-import { BarksContextProvider } from './Contexts/BarksContext'
+import { GlobalContextProvider } from "./Contexts/GlobalContext";
 
 ReactDOM.render(
   <React.StrictMode>
-    <BarksContextProvider>
+    <GlobalContextProvider>
       <App />
-    </BarksContextProvider>
+    </GlobalContextProvider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
-
