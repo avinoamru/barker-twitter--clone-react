@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
 import { GlobalContext } from "../Contexts/GlobalContext";
 
-// const postBarkUrl = "https://bark-api.herokuapp.com/bark"
-const postBarkUrl = "http://localhost:9090/bark";
+const postBarkUrl = "https://bark-api.herokuapp.com/bark"
+// const postBarkUrl = "http://localhost:9090/bark";
 
 const BarkForm = () => {
   const [barks, setBarks] = useContext(GlobalContext).BarksContext;
@@ -36,39 +36,48 @@ const BarkForm = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(newBark),
-    });
-    getBarks().then((barks) => {
-      setBarks(barks);
-    });
+    }).then(() => {
+      getBarks().then((barks) => {
+        setBarks(barks.reverse());
+      });
+
+    })
 
     setName("");
     setContent("");
   };
 
   return (
-    <form action="POST" onSubmit={submitHandler}>
-      <label name="name">Name</label>
+    <form className="hero" action="POST" onSubmit={submitHandler}>
+      <label className="label" name="name">
+        Name
+        </label>
       <input
+        className="input"
         type="text"
         value={name}
         onChange={nameHandler}
         required
         autoComplete="off"
       />
-      <label name="content">Bark</label>
+      <label className="label" name="content">
+        Bark
+        </label>
       <input
+        className="input"
         type="text"
         value={content}
         onChange={contentHandler}
         required
         autoComplete="off"
       />
-
-      <button type="submit" name="submit-bark">
+      <br></br>
+      <br></br>
+      <button className="button is-info is-light is-medium" type="submit" id="submit-bark">
         Send
-        <span aria-label="1" role="img">
+          <span aria-label="1" role="img">
           🐶
-        </span>
+          </span>
       </button>
     </form>
   );

@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 
-// const getBarksUrl = "https://bark-api.herokuapp.com/"
-const getBarksUrl = "http://localhost:9090/";
+const getBarksUrl = "https://bark-api.herokuapp.com/"
+// const getBarksUrl = "http://localhost:9090/";
 
 const getBarks = async () => {
   const res = await fetch(getBarksUrl);
@@ -16,7 +16,7 @@ export const GlobalContextProvider = ({ children }) => {
   const [barks, setBarks] = useState([]);
 
   useEffect(() => {
-    getBarks().then((barks) => setBarks(barks));
+    getBarks().then((barks) => setBarks(barks.reverse()));
   }, []);
 
   return (
