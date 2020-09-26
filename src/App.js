@@ -7,8 +7,10 @@ const App = () => {
   return (
     <div className="App">
       <h1 className="title ">Barker Twitter For Dogs</h1>
+      <main>
       <BarkForm />
       <Barks />
+      </main>
     </div>
   );
 };
