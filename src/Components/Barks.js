@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
-import { GlobalContext } from "../Contexts/GlobalContext";
+
+import { BarksContext } from "../Contexts/GlobalContext";
 import Bark from "./Bark";
 const Barks = () => {
-  const barks = useContext(GlobalContext).BarksContext[0]; // only the barks list, I don't need the setBarks function
+  const [barks,dispatch] = useContext(BarksContext); // only the barks list, I don't need the setBarks function
 
   return (
     <div className="barks content ">

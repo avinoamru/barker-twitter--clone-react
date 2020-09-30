@@ -2,13 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import "bulma/css/bulma.css";
-import { GlobalContextProvider } from "./Contexts/GlobalContext";
+
+import { BarksContextProvider } from "./Contexts/GlobalContext";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <GlobalContextProvider>
+    <BarksContextProvider>
       <App />
-    </GlobalContextProvider>
-  </React.StrictMode>,
+    </BarksContextProvider>,
   document.getElementById("root")
 );

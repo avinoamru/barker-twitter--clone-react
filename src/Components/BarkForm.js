@@ -1,12 +1,10 @@
 import React, { useContext, useState } from "react";
-import { GlobalContext } from "../Contexts/GlobalContext";
+import { BarksContext } from "../Contexts/GlobalContext";
 
-const postBarkUrl = "https://bark-api.herokuapp.com/bark"
-// const postBarkUrl = "http://localhost:9090/bark";
+const barkUrl = "https://bark-api.herokuapp.com/bark/";
 
 const BarkForm = () => {
-  const [barks, setBarks] = useContext(GlobalContext).BarksContext;
-  const getBarks = useContext(GlobalContext).fetchBarks;
+  const [barks, barksDispatch] = useContext(BarksContext);
 
   const [name, setName] = useState("");
   const [content, setContent] = useState("");
@@ -30,21 +28,24 @@ const BarkForm = () => {
       content,
     };
 
-    fetch(postBarkUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+    fetch(barkUrl,{
+      method:"post",
+      headers:{
+        "Content-Type": "application/json"
       },
-      body: JSON.stringify(newBark),
-    }).then(() => {
-      getBarks().then((barks) => {
-        setBarks(barks.reverse());
-      });
+      body: JSON.stringify(newBark)
+    }).then(res=>res.json().then(postedBark=>barksDispatch({
+      type:"POST-BARK",
+      payload: postedBark
+    })))
 
-    })
+    
 
-    setName("");
-    setContent("");
+
+    setName("")
+    setContent("")
+
+    
   };
 
   return (
@@ -60,6 +61,7 @@ const BarkForm = () => {
         required
         autoComplete="off"
       />
+
       <label className="label" name="content">
         Bark
         </label>

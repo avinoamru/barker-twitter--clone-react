@@ -1,23 +1,23 @@
 import React, { useContext } from "react";
-import { GlobalContext } from "../Contexts/GlobalContext";
+import { BarksContext } from "../Contexts/GlobalContext";
 
 const deleteBarkUrl = "https://bark-api.herokuapp.com/bark/";
-const fetchBarks = "https://bark-api.herokuapp.com/";
 
 const Bark = ({ id, name, content }) => {
-  const [barks, setbarks] = useContext(GlobalContext).BarksContext;
+  const [barks, barksDispatch] = useContext(BarksContext);
 
   const deleteBark =  (e) => {
    e.preventDefault()
-    let deletedBarkUrl = deleteBarkUrl.concat(id)
-   console.log(deletedBarkUrl)
-   fetch(deletedBarkUrl,{
-     method:"DELETE"
+
+   fetch(deleteBarkUrl.concat(id),{
+     method:"delete"
    }).then(()=>{
-     fetch(fetchBarks).then(res=>res.json()).then(data=>{
-       setbarks(data)
-     })
+    barksDispatch({
+      type: "DELETE-BARK",
+      payload: id
+    })
    })
+
    
   };
 
